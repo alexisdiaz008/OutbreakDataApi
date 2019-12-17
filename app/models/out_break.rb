@@ -1,0 +1,2 @@
+class OutBreak < ApplicationRecord
+end
