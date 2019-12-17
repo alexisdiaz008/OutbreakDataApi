@@ -29,10 +29,33 @@ RSpec.describe OutBreaksController, type: :controller do
   # OutBreak. As you add validations to OutBreak, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      report_date: Date.new(2001,12),
+      state: "Florida",
+      primary_mode: "person-to-person",
+      etiology: "Norovirus Genogroup II",
+      serotype_or_genotype: "confirmed",
+      etiology_status: "Norovirus Genogroup II",
+      setting: "Diner",
+      illnesses: 33,
+      hospitalizations: 11,
+      deaths: 2
+    }
   }
 
   let(:invalid_attributes) {
+    {
+      report_date: "Date.new(2001,12)",
+      state: 1231,
+      primary_mode: 123,
+      etiology: 123,
+      serotype_or_genotype: 123,
+      etiology_status: 123,
+      setting: 123,
+      illnesses: "33",
+      hospitalizations: "11",
+      deaths: "2"
+    }
     skip("Add a hash of attributes invalid for your model")
   }
 
@@ -66,7 +89,6 @@ RSpec.describe OutBreaksController, type: :controller do
       end
 
       it "renders a JSON response with the new out_break" do
-
         post :create, params: {out_break: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
@@ -76,7 +98,6 @@ RSpec.describe OutBreaksController, type: :controller do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the new out_break" do
-
         post :create, params: {out_break: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
