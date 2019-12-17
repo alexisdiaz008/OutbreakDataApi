@@ -9,7 +9,18 @@ require 'rubyXL'
 outbreak_workbook = RubyXL::Parser.parse( Rails.root.join('public/NationalOutbreakPublicDataTool.xlsx'))
 worksheet = outbreak_workbook.worksheets[0]
 worksheet.each do |row|
-	pp "Year: #{row[0].value if row[0].present?}, Month: #{row[1].value if row[1].present?} State: #{row[2].value if row[2].present?} Primary-Mode: #{row[3].value if row[3].present?} Etiology: #{row[4].value if row[4].present?} Serotype or Genotype: #{row[5].value if row[5].present?} Etiology Status: #{row[6].value if row[6].present?} Setting: #{row[7].value if row[7].present?} Illnesses: #{row[8].value if row[8].present?} Hospitalizations: #{row[9].value if row[9].present?} Deaths: #{row[11].value if row[11].present?}"
+	OutBreak.new(
+	report_date: Date.new((row[0].value if row[0].present?),(row[1].value if row[1].present?)),
+	state: row[2].value if row[2].present?,
+	primary_mode: row[3].value if row[3].present?,
+	etiology: row[4].value if row[4].present?,
+	serotype_or_genotype: row[5].value if row[5].present?,
+	etiology_status: row[6].value if row[6].present?,
+	setting: row[7].value if row[7].present?,
+	illnesses: row[8].value.to_i if row[8].present?,
+	hospitalizations: row[9].value.to_i if row[9].present?,
+	deaths: row[11].value.to_i if row[11].present?
+	)
 end
 # csv = CSV.parse(csv_text, :headers => true)
 
