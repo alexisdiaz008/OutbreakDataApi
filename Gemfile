@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+
+# allows cross origin requests, for public facing api
+gem 'rack-cors'
 # a gem that allows us to read, write, and export xlsx files
 gem 'rubyXL'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
