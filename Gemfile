@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+# gem for serialization of attributes for JSON api, viewless jbuilder alternative
+gem 'active_model_serializers'
 # allows cross origin requests, for public facing api
 gem 'rack-cors'
 # a gem that allows us to read, write, and export xlsx files
