@@ -120,7 +120,6 @@ RSpec.describe OutBreaksController, type: :controller do
 
       it "renders a JSON response with the out_break" do
         out_break = OutBreak.create! valid_attributes
-
         put :update, params: {id: out_break.to_param, out_break: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
@@ -130,7 +129,6 @@ RSpec.describe OutBreaksController, type: :controller do
     context "with invalid params" do
       it "renders a JSON response with errors for the out_break" do
         out_break = OutBreak.create! valid_attributes
-
         put :update, params: {id: out_break.to_param, out_break: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
