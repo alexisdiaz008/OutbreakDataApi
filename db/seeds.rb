@@ -8,7 +8,7 @@ require 'rubyXL'
 
 outbreak_workbook = RubyXL::Parser.parse( Rails.root.join('public/NationalOutbreakPublicDataTool.xlsx'))
 worksheet = outbreak_workbook.worksheets[0]
-worksheet.each do |row|
+worksheet[0..1000].each do |row|
 	begin
 	  p OutBreak.create(
 			report_date: Date.new(((row[0].value.to_i if row[0].present?)),((row[1].value.to_i if row[1].present?))),

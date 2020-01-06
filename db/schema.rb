@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_12_17_014330) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "out_breaks", force: :cascade do |t|
     t.date "report_date"
     t.string "state"
