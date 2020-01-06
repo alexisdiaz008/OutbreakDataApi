@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: db/out_break_data_api_production
+  url: <%= ENV['DATABASE_URL'] %>
