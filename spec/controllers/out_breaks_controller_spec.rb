@@ -50,7 +50,7 @@ RSpec.describe OutBreaksController, type: :controller do
       primary_mode: 123,
       etiology: 123,
       serotype_or_genotype: 123,
-      etiology_status: 123,
+      etiology_status: 123, 
       setting: 123,
       illnesses: "33",
       hospitalizations: "11",
@@ -107,14 +107,24 @@ RSpec.describe OutBreaksController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          report_date: Date.new(2020,12),
+          state: "Alabame",
+          primary_mode: "animal-to-person",
+          etiology: "Norovirus Genogroup II",
+          serotype_or_genotype: "confirmed",
+          etiology_status: "Norovirus Genogroup II",
+          setting: "Bar",
+          illnesses: 21,
+          hospitalizations: 12,
+          deaths: 22
+        }
       }
 
       it "updates the requested out_break" do
         out_break = OutBreak.create! valid_attributes
         put :update, params: {id: out_break.to_param, out_break: new_attributes}, session: valid_session
-        out_break.reload
-        skip("Add assertions for updated state")
+        expect { out_break.reload }.to change(out_break, :updated_at)
       end
 
       it "renders a JSON response with the out_break" do

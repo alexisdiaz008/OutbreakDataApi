@@ -2,8 +2,7 @@ class OutBreaksController < ApplicationController
   before_action :set_out_break, only: [:show, :update, :destroy]
 
   def index
-    @out_breaks = ActiveRecord::Base.connection.exec_query("SELECT out_breaks.* FROM out_breaks")
-    # @out_breaks = OutBreak.all
+    @out_breaks = OutBreak.all
     render json: @out_breaks
   end
 
@@ -35,7 +34,7 @@ class OutBreaksController < ApplicationController
   private
 
   def set_out_break
-    @out_break = OutBreak.where(["id = ?", "#{params[:id]}"])
+    @out_break = OutBreak.find(params[:id])
   end
 
   def out_break_params
