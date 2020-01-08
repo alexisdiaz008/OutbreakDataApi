@@ -35,7 +35,7 @@ class OutBreaksController < ApplicationController
   private
 
   def set_out_break
-    @out_break = OutBreak.find(params[:id])
+    @out_break = OutBreak.where(["id = ?", "#{params[:id]}"])
   end
 
   def out_break_params
