@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+gem 'pg'
 # gem for serialization of attributes for JSON api, viewless jbuilder alternative
 gem 'active_model_serializers'
 # allows cross origin requests, for public facing api
