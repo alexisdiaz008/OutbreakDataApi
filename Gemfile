@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'pg'
 # gem for serialization of attributes for JSON api, viewless jbuilder alternative
 gem 'active_model_serializers'
 # allows cross origin requests, for public facing api
@@ -13,7 +12,7 @@ gem 'rubyXL'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.1.rc1'
 # Use pg as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
