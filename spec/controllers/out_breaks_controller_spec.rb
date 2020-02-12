@@ -50,13 +50,12 @@ RSpec.describe OutBreaksController, type: :controller do
       primary_mode: 123,
       etiology: 123,
       serotype_or_genotype: 123,
-      etiology_status: 123,
+      etiology_status: 123, 
       setting: 123,
       illnesses: "33",
       hospitalizations: "11",
       deaths: "2"
     }
-    skip("Add a hash of attributes invalid for your model")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -66,7 +65,7 @@ RSpec.describe OutBreaksController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      out_break = OutBreak.create! valid_attributes
+      # out_break = OutBreak.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -91,7 +90,7 @@ RSpec.describe OutBreaksController, type: :controller do
       it "renders a JSON response with the new out_break" do
         post :create, params: {out_break: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to eq('application/json')
+        expect(response.media_type).to eq('application/json')
         expect(response.location).to eq(out_break_url(OutBreak.last))
       end
     end
@@ -100,7 +99,7 @@ RSpec.describe OutBreaksController, type: :controller do
       it "renders a JSON response with errors for the new out_break" do
         post :create, params: {out_break: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.media_type).to eq('application/json')
       end
     end
   end
@@ -108,21 +107,31 @@ RSpec.describe OutBreaksController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          report_date: Date.new(2020,12),
+          state: "Alabame",
+          primary_mode: "animal-to-person",
+          etiology: "Norovirus Genogroup II",
+          serotype_or_genotype: "confirmed",
+          etiology_status: "Norovirus Genogroup II",
+          setting: "Bar",
+          illnesses: 21,
+          hospitalizations: 12,
+          deaths: 22
+        }
       }
 
       it "updates the requested out_break" do
         out_break = OutBreak.create! valid_attributes
         put :update, params: {id: out_break.to_param, out_break: new_attributes}, session: valid_session
-        out_break.reload
-        skip("Add assertions for updated state")
+        expect { out_break.reload }.to change(out_break, :updated_at)
       end
 
       it "renders a JSON response with the out_break" do
         out_break = OutBreak.create! valid_attributes
         put :update, params: {id: out_break.to_param, out_break: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to eq('application/json')
+        expect(response.media_type).to eq('application/json')
       end
     end
 
@@ -131,7 +140,7 @@ RSpec.describe OutBreaksController, type: :controller do
         out_break = OutBreak.create! valid_attributes
         put :update, params: {id: out_break.to_param, out_break: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.media_type).to eq('application/json')
       end
     end
   end
